@@ -964,14 +964,13 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan)
 // miner's coin base reward
 int64_t GetProofOfWorkReward(int64_t nFees)
 {
-    int64_t nSubsidy = 100 * COIN;
-	if(pindexBest->nHeight < 1)
+    int64_t nSubsidy = 0 * COIN;
+	if(pindexBest->nHeight === 1)
     {
         nSubsidy = 2100000 * COIN;
     }
-
-        else if(pindexBest->nHeight < 2)
-	{
+    else
+    {
 		nSubsidy = 0 * COIN;
 	}
 		
@@ -2461,10 +2460,10 @@ bool LoadBlockIndex(bool fAllowNew)
 
     if (fTestNet)
     {
-        pchMessageStart[0] = 0xa1;
-        pchMessageStart[1] = 0xa0;
-        pchMessageStart[2] = 0xa2;
-        pchMessageStart[3] = 0xa3;
+        pchMessageStart[0] = 0xe1;
+        pchMessageStart[1] = 0xe0;
+        pchMessageStart[2] = 0xe2;
+        pchMessageStart[3] = 0xe3;
 
         bnProofOfWorkLimit = bnProofOfWorkLimitTestNet; // 0x0000ffff PoW base target is fixed in testnet
         nStakeMinAge = 20 * 60; // test net min age is 20 min
@@ -2486,9 +2485,9 @@ bool LoadBlockIndex(bool fAllowNew)
         if (!fAllowNew)
             return false;
 
-        const char* pszTimestamp = "ebolashares10312014";
+        const char* pszTimestamp = "Netherlands: What is Bitcoin? We Don’t Really Know"; // Updated: November 23, 2014 at 5:43 pm CET. Crypto Coins News dot com
         CTransaction txNew;
-        txNew.nTime = 1409692770;
+        txNew.nTime = 1416769534;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -2498,7 +2497,7 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1409692770;
+        block.nTime    = 1416769534; // Sun, 23 Nov 2014 19:05:34 GMT
         block.nBits    = bnProofOfWorkLimit.GetCompact();
         block.nNonce   = 3096446;
 		if(fTestNet)
@@ -2797,7 +2796,7 @@ bool static AlreadyHave(CTxDB& txdb, const CInv& inv)
 // The message start string is designed to be unlikely to occur in normal data.
 // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
 // a large 4-byte int at any alignment.
-unsigned char pchMessageStart[4] = { 0xa1, 0xa0, 0xa2, 0xa3 };
+unsigned char pchMessageStart[4] = { 0xe2, 0xe1, 0xe2, 0xe1 };
 
 bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 {
