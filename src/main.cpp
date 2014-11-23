@@ -2504,7 +2504,7 @@ bool LoadBlockIndex(bool fAllowNew)
         {
             block.nNonce   = 0;
         }
-        if (false && (block.GetHash() != hashGenesisBlock)) {
+        if (true && (block.GetHash() != hashGenesisBlock)) {
 
         // This will figure out a valid hash and Nonce if you're
         // creating a different genesis block:
@@ -2526,7 +2526,7 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("block.nNonce = %u \n", block.nNonce);
 
         //// debug print
-        assert(block.hashMerkleRoot == uint256("0xd6d5205b3ab9ba66a60e99cb97de345470cc8dab35183509aaa467cdd4881b75"));
+        assert(block.hashMerkleRoot == uint256("0x81a8b3c433c11b0373a87c64d86d4d3173ebf690ac247fceb34cfdc9646bec94"));
         block.print();
         assert(block.GetHash() == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet));
         assert(block.CheckBlock());
