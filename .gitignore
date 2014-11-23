@@ -129,3 +129,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+object_script.ebolashares-qt.Release
+ebolashares-qt_plugin_import.cpp
+ebolashares-qt_qml_plugin_import.cpp
+object_script.ebolashares-qt.Debug
