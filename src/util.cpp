@@ -1009,13 +1009,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\ebolasharesV3
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\ebolasharesV3
-    // Mac: ~/Library/Application Support/ebolasharesV3
-    // Unix: ~/.ebolasharesV3
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\ebolashares
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\ebolashares
+    // Mac: ~/Library/Application Support/ebolashares
+    // Unix: ~/.ebolashares
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "ebolasharesV3";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "ebolashares";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -1027,10 +1027,10 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     fs::create_directory(pathRet);
-    return pathRet / "ebolasharesV3";
+    return pathRet / "ebolashares";
 #else
     // Unix
-    return pathRet / ".ebolasharesV3";
+    return pathRet / ".ebolashares";
 #endif
 #endif
 }
