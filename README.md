@@ -1,15 +1,15 @@
 EBOLA
 ====
 
-ebolashares "EBOLA" the X13 PoW/PoS Cryptocurrency.
+ebolashares "EBOLA" a pure PoS Charity Experiment
 
-Algorithm: X13 POW/POS
+Algorithm: X13 - Full POS
 
 Ticker: Ebola
 
 Current Version "3.0.0.0"
 
-Max Coins: 21,000,000 Ebola
+Max Coins: TBA Ebola
 
 MinStakeAge: 21 hour, MaxStakeAge: Unlimited, 100% Annual Interest
 
