@@ -40,7 +40,7 @@ bool AppInit(int argc, char* argv[])
         if (!boost::filesystem::is_directory(GetDataDir(false)))
         {
             fprintf(stderr, "Error: Specified directory does not exist\n");
-            Shutdown();
+            Shutdown(NULL);
         }
         ReadConfigFile(mapArgs, mapMultiArgs);
 
@@ -95,7 +95,7 @@ bool AppInit(int argc, char* argv[])
 #endif
 
         detectShutdownThread = new boost::thread(boost::bind(&DetectShutdownThread, &threadGroup));
-        fRet = AppInit2(threadGroup);
+        fRet = AppInit2();
     }
     catch (std::exception& e) {
         PrintExceptionContinue(&e, "AppInit()");
@@ -114,7 +114,7 @@ bool AppInit(int argc, char* argv[])
         delete detectShutdownThread;
         detectShutdownThread = NULL;
     }
-    Shutdown();
+    Shutdown(NULL);
 
     return fRet;
 }

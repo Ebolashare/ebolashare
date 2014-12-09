@@ -46,22 +46,22 @@ enum Checkpoints::CPMode CheckpointsMode;
 // Shutdown
 //
 
+//volatile bool fRequestShutdown = false;
+
+void StartShutdown()
+{
+    fRequestShutdown = true;
+}
+bool ShutdownRequested()
+{
+    return fRequestShutdown;
+}
+
 void ExitTimeout(void* parg)
 {
 #ifdef WIN32
     MilliSleep(5000);
     ExitProcess(0);
-#endif
-}
-
-void StartShutdown()
-{
-#ifdef QT_GUI
-    // ensure we leave the Qt main loop for a clean GUI exit (Shutdown() is called in bitcoin.cpp afterwards)
-    uiInterface.QueueShutdown();
-#else
-    // Without UI, Shutdown() can simply be started in a new thread
-    NewThread(Shutdown, NULL);
 #endif
 }
 
@@ -161,7 +161,7 @@ std::string HelpMessage()
     strUsage += "  -timeout=<n>           " + _("Specify connection timeout in milliseconds (default: 5000)") + "\n";
     strUsage += "  -proxy=<ip:port>       " + _("Connect through socks proxy") + "\n";
     strUsage += "  -socks=<n>             " + _("Select the version of socks proxy to use (4-5, default: 5)") + "\n";
-    strUsage += "  -tor=<ip:port>         " + _("Use proxy to reach tor hidden services (default: same as -proxy)") + "\n"
+    strUsage += "  -tor=<ip:port>         " + _("Use proxy to reach tor hidden services (default: same as -proxy)") + "\n";
     strUsage += "  -dns                   " + _("Allow DNS lookups for -addnode, -seednode and -connect") + "\n";
     strUsage += "  -port=<port>           " + _("Listen for connections on <port> (default: 9333 or testnet: 19332)") + "\n";
     strUsage += "  -maxconnections=<n>    " + _("Maintain at most <n> connections to peers (default: 125)") + "\n";
@@ -226,12 +226,12 @@ std::string HelpMessage()
     strUsage += "  -checklevel=<n>        " + _("How thorough the block verification is (0-6, default: 1)") + "\n";
     strUsage += "  -loadblock=<file>      " + _("Imports blocks from external blk000?.dat file") + "\n";
 
-        "\n"; _("Block creation options:") + "\n";
+    strUsage +=     "\n"; _("Block creation options:") + "\n";
     strUsage += "  -blockminsize=<n>  strUsage += "   + _("Set minimum block size in bytes (default: 0)") + "\n";
     strUsage += "  -blockmaxsize=<n>  strUsage += "   + _("Set maximum block size in bytes (default: 250000)") + "\n";
     strUsage += "  -blockprioritysize=<n> "   + _("Set maximum size of high-priority/low-fee transactions in bytes (default: 27000)") + "\n";
 
-        "\n"; _("SSL options: (see the Bitcoin Wiki for SSL setup instructions)") + "\n";
+    strUsage += "\n"; _("SSL options: (see the Bitcoin Wiki for SSL setup instructions)") + "\n";
     strUsage += "  -rpcssl                                  " + _("Use OpenSSL (https) for JSON-RPC connections") + "\n";
     strUsage += "  -rpcsslcertificatechainfile=<file.cert>  " + _("Server certificate file (default: server.cert)") + "\n";
     strUsage += "  -rpcsslprivatekeyfile=<file.pem>         " + _("Server private key (default: server.pem)") + "\n";
