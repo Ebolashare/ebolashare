@@ -117,6 +117,8 @@ static void handleRunawayException(std::exception *e)
 #ifndef BITCOIN_QT_TEST
 int main(int argc, char *argv[])
 {
+    fHaveGUI = true;
+
     // Do this early as we don't want to bother initializing if we are just calling IPC
     ipcScanRelay(argc, argv);
 
