@@ -26,6 +26,13 @@ Block 1 is 2,100,000  Premine 100% block
 
 X13 -(blake, bmw, groestl, jh, keccak, skein, luffa, cubehash, shavite, simd, echo, hamsi, fugue)
 
+Compile in linux:
+     export CC="gcc -fPIC"
+     make clean
+     make distclean
+     ./autogen.sh
+     ./configure
+     ./make --with-incompatible-bdb
 
 
 
