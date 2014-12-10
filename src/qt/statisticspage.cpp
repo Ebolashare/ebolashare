@@ -4,6 +4,7 @@
 #include "base58.h"
 #include "clientmodel.h"
 #include "bitcoinrpc.h"
+#include "statisticspage.h"
 #include <sstream>
 #include <string>
 

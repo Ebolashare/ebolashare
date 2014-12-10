@@ -51,7 +51,7 @@ https://api.mintpal.com/v2/market/stats/AUR/BTC is an example as the market EBOL
 
 void HashMarketApi::mintpal()
 {
-   ///TO BE Removed
+   // TO BE Removed
 //    market = "SUPER";
 
     QUrl url( QString("https://api.mintpal.com/v2/market/stats/%1/BTC").arg(market) );
