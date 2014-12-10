@@ -56,7 +56,7 @@
 #include <QDateTime>
 #include <QMovie>
 #include <QFileDialog>
-#include <QDesktopServices>
+//#include <QDesktopServices>
 #include <QTimer>
 #include <QDragEnterEvent>
 #include <QUrl>
@@ -176,8 +176,8 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
 
     toolbar->setSource(QUrl(QStringLiteral("qrc:/qml/toolbar")));
     toolbar->setResizeMode(QQuickWidget::SizeRootObjectToView);
-    toolbar->setAttribute(Qt::WA_AlwaysStackOnTop);
-    toolbar->setClearColor(Qt::transparent);
+    //toolbar->setAttribute(Qt::WA_AlwaysStackOnTop);
+    //toolbar->setClearColor(Qt::transparent);
     toolbar->resize(window()->width() *0.3 , window()->height());
     toolbar->addAction(overviewAction);
     //toolbar->setContentsMargins(5,5,5,5);
@@ -1000,7 +1000,8 @@ void BitcoinGUI::encryptWallet(bool status)
 
 void BitcoinGUI::backupWallet()
 {
-    QString saveDir = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+    //QString saveDir = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+    QString saveDir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     QString filename = QFileDialog::getSaveFileName(this, tr("Backup Wallet"), saveDir, tr("Wallet Data (*.dat)"));
     if(!filename.isEmpty()) {
         if(!walletModel->backupWallet(filename)) {

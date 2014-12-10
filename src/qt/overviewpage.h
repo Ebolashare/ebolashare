@@ -3,17 +3,18 @@
 
 #include <QWidget>
 
-QT_BEGIN_NAMESPACE
-class QModelIndex;
-QT_END_NAMESPACE
-
-namespace Ui {
-    class OverviewPage;
-}
 class WalletModel;
 class TxViewDelegate;
 class TransactionFilterProxy;
 class HashMarketApi;
+
+namespace Ui {
+    class OverviewPage;
+}
+
+QT_BEGIN_NAMESPACE
+class QModelIndex;
+QT_END_NAMESPACE
 
 /** Overview ("home") page widget */
 class OverviewPage : public QWidget
@@ -43,8 +44,8 @@ private:
 
     TxViewDelegate *txdelegate;
     TransactionFilterProxy *filter;
-
     HashMarketApi *hashMarketApi;
+
     int apicount;
 
 private slots:
