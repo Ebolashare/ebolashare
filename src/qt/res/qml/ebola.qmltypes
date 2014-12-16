@@ -1,9 +1,0 @@
-import QtQuick.tooling 1.1
-
-Module {
-    Component {
-        name: "MenuButton"
-        prototype: "QObject"
-        Property { name: "source"; type: "string" }
-    }
-}

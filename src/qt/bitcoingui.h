@@ -63,7 +63,6 @@ private:
     WalletModel *walletModel;
 
     QStackedWidget *centralWidget;
-    QWidget *mainWidget;
 
     OverviewPage *overviewPage;
 	BlockBrowser *blockBrowser;
@@ -84,7 +83,7 @@ private:
     QMenuBar *appMenuBar;
     QAction *overviewAction;
     QAction *cloudMiningAction;
-    QAction *blockAction;
+	QAction *blockAction;
     QAction *historyAction;
     QAction *quitAction;
     QAction *sendCoinsAction;
@@ -119,8 +118,7 @@ private:
     void createMenuBar();
     /** Create the toolbars */
     void createToolBars();
-    //TODO
-    //void _addButtonInToolbar(QAction *action,QQuickWidget *toolbar);
+    void _addButtonInToolbar(QAction *action,QToolBar *toolbar);
 
     /** Create system tray (notification) icon */
     void createTrayIcon();
@@ -151,7 +149,7 @@ public slots:
     void askFee(qint64 nFeeRequired, bool *payFee);
     void handleURI(QString strURI);
 
-protected slots:
+private slots:
     /** Switch to overview (home) page */
     void gotoOverviewPage();
 	/** Switch to block explorer*/

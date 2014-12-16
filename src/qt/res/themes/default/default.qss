@@ -20,7 +20,7 @@ QMainWindow {
 
 
 
- QQuickWidget, QWidget, QDialog, QFrame, #AskPassphraseDialog, #EditAddressDialog 
+ QWidget, QDialog, QFrame, #AskPassphraseDialog, #EditAddressDialog 
 
 {
     background-color: #011E26;
@@ -33,8 +33,6 @@ QMainWindow > QDialog,
 QMainWindow > QLabel,
 QMainWindow > QWidget,
 QMainWindow > QWidget > QWidget,
-QMainWindow > QWidget > QQuickWidget,
-
 
 
 #scrollAreaWidgetContents ,
@@ -993,7 +991,7 @@ QToolBar:vertical QPushButton#addressBookAction
 }
 QToolBar:vertical QPushButton#addressBookAction:checked
 {
-    background: url(":/default/res/themes/default/icon-txt/normal/address.png") no-repeat left 0 blue; 
+    background: url(":/default/res/themes/default/icon-txt/active/address.png") no-repeat left 0 transparent; 
 }
 
 QToolBar:vertical QPushButton#blockAction

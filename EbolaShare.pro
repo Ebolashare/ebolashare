@@ -3,13 +3,12 @@ macx{
 }
 TEMPLATE = app
 TARGET = ebolashares-qt
-VERSION = 1.0.0
+VERSION = 0.5.0
 INCLUDEPATH += src src/json src/qt /usr/local/include
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
 CONFIG += thread
-QT += core gui network widgets quick quickwidgets qml
-QML_IMPORT_PATH = src/qt/res/qml
+QT += core gui network widgets
 #greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 lessThan(QT_MAJOR_VERSION, 5): CONFIG += static
 CONFIG += static
@@ -145,8 +144,7 @@ SOURCES += src/txdb-leveldb.cpp \
 	src/hamsi.c \
     src/qt/CloudMining.cpp \
     src/qt/QtWaitingSpinner.cpp \
-    src/qt/HashMarketApi.cpp \
-    src/qt/quickwidget.cpp
+    src/qt/HashMarketApi.cpp
 
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
@@ -302,8 +300,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/txdb-leveldb.h \
     src/qt/CloudMining.h \
     src/qt/QtWaitingSpinner.h \
-    src/qt/HashMarketApi.h \
-    src/qt/quickwidget.h
+    src/qt/HashMarketApi.h
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/transactiontablemodel.cpp \
     src/qt/addresstablemodel.cpp \
@@ -378,8 +375,8 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/pbkdf2.cpp 
 
 RESOURCES += \
-    src/qt/themes.qrc \
-    src/qt/assets.qrc
+    src/qt/bitcoin.qrc \
+    src/qt/themes.qrc
 
 FORMS += \
     src/qt/forms/coincontroldialog.ui \
@@ -407,7 +404,7 @@ FORMS += src/qt/forms/qrcodedialog.ui
 CODECFORTR = UTF-8
 
 # for lrelease/lupdate
-# also add new translations to src/qt/assets.qrc under translations/
+# also add new translations to src/qt/bitcoin.qrc under translations/
 TRANSLATIONS = $$files(src/qt/locale/bitcoin_*.ts)
 
 isEmpty(QMAKE_LRELEASE) {
@@ -503,5 +500,3 @@ contains(RELEASE, 1) {
 }
 
 system($$QMAKE_LRELEASE -silent $$_PRO_FILE_)
-
-DISTFILES +=

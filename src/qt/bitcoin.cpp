@@ -120,17 +120,13 @@ int main(int argc, char *argv[])
     // Do this early as we don't want to bother initializing if we are just calling IPC
     ipcScanRelay(argc, argv);
 
-    // set the value of the environment variable QML_IMPORT_TRACE as 1
-        QByteArray data = "1";
-        qputenv("QML_IMPORT_TRACE", data);
-
 #if QT_VERSION < 0x050000
     // Internal string conversion is all UTF-8
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
     QTextCodec::setCodecForCStrings(QTextCodec::codecForTr());
 #endif
 
-    Q_INIT_RESOURCE(assets);
+    Q_INIT_RESOURCE(bitcoin);
     QApplication app(argc, argv);
 
     // Install global event filter that makes sure that long tooltips can be word-wrapped
@@ -155,9 +151,9 @@ int main(int argc, char *argv[])
     app.setOrganizationName("ebolashares");
     //XXX app.setOrganizationDomain("");
     if(GetBoolArg("-testnet")) // Separate UI settings for testnet
-        app.setApplicationName("ebolashares-Qt-testnet");
+        app.setApplicationName("ebolashares-qt-testnet");
     else
-        app.setApplicationName("ebolashares-Qt");
+        app.setApplicationName("ebolashares-qt");
 
     // ... then GUI settings:
     OptionsModel optionsModel;
@@ -181,11 +177,11 @@ int main(int argc, char *argv[])
     if (qtTranslator.load("qt_" + lang_territory, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
         app.installTranslator(&qtTranslator);
 
-    // Load e.g. bitcoin_de.qm (shortcut "de" needs to be defined in assets.qrc)
+    // Load e.g. bitcoin_de.qm (shortcut "de" needs to be defined in bitcoin.qrc)
     if (translatorBase.load(lang, ":/translations/"))
         app.installTranslator(&translatorBase);
 
-    // Load e.g. bitcoin_de_DE.qm (shortcut "de_DE" needs to be defined in assets.qrc)
+    // Load e.g. bitcoin_de_DE.qm (shortcut "de_DE" needs to be defined in bitcoin.qrc)
     if (translator.load(lang_territory, ":/translations/"))
         app.installTranslator(&translator);
 
@@ -227,7 +223,6 @@ int main(int argc, char *argv[])
             GUIUtil::SetStartOnSystemStartup(true);
 
         BitcoinGUI window;
-        //window.setAttribute(Qt::WA_TranslucentBackground);
         guiref = &window;
         if(AppInit2())
         {

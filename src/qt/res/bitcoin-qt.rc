@@ -1,4 +1,4 @@
-IDI_ICON1 ICON DISCARDABLE "icons/EbolaShare.ico"
+IDI_ICON1 ICON DISCARDABLE "icons/ebolashare.ico"
 
 #include <windows.h>             // needed for VERSIONINFO
 #include "../../clientversion.h" // holds the needed client version information
@@ -19,13 +19,13 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "EbolaShare"
-            VALUE "FileDescription",    "EbolaShare-Qt (OSS GUI client for EbolaShare)"
+            VALUE "FileDescription",    "ebolashare-qt (OSS GUI client for EbolaShare)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "EbolaShare-qt"
+            VALUE "InternalName",       "ebolashare-qt"
             VALUE "LegalCopyright",     "2009-2014 The Bitcoin developers, 2014 The EbolaShare developers"
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "EbolaShare-qt.exe"
-            VALUE "ProductName",        "EbolaShare-Qt"
+            VALUE "OriginalFilename",   "ebolashare-qt.exe"
+            VALUE "ProductName",        "ebolashare-qt"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

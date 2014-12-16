@@ -439,13 +439,16 @@ DBErrors CWalletDB::LoadWallet(CWallet* pwallet)
 
     try {
         LOCK(pwallet->cs_wallet);
-        int nMinVersion = 0;
+
+// Activate this on version 3.0 or fix "newer version" error
+/*      int nMinVersion = 0;
         if (Read((string)"minversion", nMinVersion))
         {
             if (nMinVersion > CLIENT_VERSION)
                 return DB_TOO_NEW;
             pwallet->LoadMinVersion(nMinVersion);
         }
+*/
 
         // Get cursor
         Dbc* pcursor = GetCursor();

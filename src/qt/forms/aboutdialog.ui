@@ -41,7 +41,7 @@
       </size>
      </property>
      <property name="pixmap">
-      <pixmap resource="../assets.qrc">:/icons/bitcoin</pixmap>
+      <pixmap resource="../bitcoin.qrc">:/icons/bitcoin</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -177,7 +177,7 @@ This product includes software developed by the OpenSSL Project for use in the O
   </layout>
  </widget>
  <resources>
-  <include location="../assets.qrc"/>
+  <include location="../bitcoin.qrc"/>
  </resources>
  <connections/>
 </ui>

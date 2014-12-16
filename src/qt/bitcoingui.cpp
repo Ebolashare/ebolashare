@@ -30,7 +30,6 @@
 #include "ActionButton.h"
 #include "header.h"
 #include "CloudMining.h"
-#include "quickwidget.h"
 
 #ifdef Q_OS_MAC
 #include "macdockiconhandler.h"
@@ -63,15 +62,9 @@
 #include <QStyle>
 #include <QStyleFactory>
 #include <QDebug>
-#include <QQuickWidget>
-#include <QtQml>
-#include <QtQuick>
+
 
 #include <iostream>
-
-#include <QQmlExtensionPlugin>
-Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
-Q_IMPORT_PLUGIN(QtQuick2Plugin)
 
 extern CWallet* pwalletMain;
 extern int64_t nLastCoinStakeSearchInterval;
@@ -138,75 +131,13 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
 
     centralWidget = new QStackedWidget(this);
     centralWidget->addWidget(overviewPage);
-    centralWidget->addWidget(blockBrowser);
+	centralWidget->addWidget(blockBrowser);
     centralWidget->addWidget(transactionsPage);
     centralWidget->addWidget(addressBookPage);
     centralWidget->addWidget(receiveCoinsPage);
     centralWidget->addWidget(sendCoinsPage);
     centralWidget->addWidget(cloudMining);
-
-    // ////////////////////////////////////////
-
-    mainWidget = new QWidget(this);
-
-    //mainWidget->setAttribute(Qt::WA_TranslucentBackground);
-    //mainWidget->setStyleSheet("background-color: 'transparent';");
-    QHBoxLayout *mainLayout = new QHBoxLayout;
-
-    //QUrl source("qrc:/toolbar");
-
-
-    //QuickWidget
-    //QQuickView *view= new QQuickView();
-    /*QQuickView *view(new QQuickView);
-    //view->setColor(Qt::transparent);
-    view->setBaseSize(QSize(200,300));
-    //view->setResizeMode(QQuickView::SizeViewToRootObject);
-    view->setSource(source);
-
-    QuickWidget *toolbar(new QuickWidget(view));
-    //toolbar->show();*/
-
-    // Create QML Widget
-    qobject_cast<QQmlExtensionPlugin*>(qt_static_plugin_QtQuick2Plugin().instance())->registerTypes("QtQuick");
-    QQuickWidget *toolbar;
-    toolbar = new QQuickWidget(this);
-    toolbar->engine()->setImportPathList(QStringList());
-    //toolbar->engine()->addImportPath(QStringLiteral("qrc:/qml/"));)
-
-    toolbar->setSource(QUrl(QStringLiteral("qrc:/qml/toolbar")));
-    toolbar->setResizeMode(QQuickWidget::SizeRootObjectToView);
-    toolbar->setAttribute(Qt::WA_AlwaysStackOnTop);
-    toolbar->setClearColor(Qt::transparent);
-    toolbar->resize(window()->width() *0.3 , window()->height());
-    toolbar->addAction(overviewAction);
-    //toolbar->setContentsMargins(5,5,5,5);
-    //toolbar->setMinimumWidth(300);
-    //toolbar->setMaximumHeight(600);
-    toolbar->rootContext()->setContextProperty("_rootwin",this);
-    toolbar->raise();
-    //qDebug() << toolbar->format();
-
-
-    //QSurfaceFormat surfaceFormat;
-    //surfaceFormat.setAlphaBufferSize(8);
-    //surfaceFormat.setRenderableType(QSurfaceFormat::OpenGL);
-    //qDebug() << surfaceFormat.hasAlpha();
-    //toolbar->setFormat(surfaceFormat);
-
-    //toolbar->setAttribute(Qt::WA_TranslucentBackground);
-    //toolbar->setClearColor(Qt::transparent);
-    //toolbar->setSource(source);
-    //qDebug() << toolbar->height() << toolbar->width();
-
-    mainLayout->addWidget(toolbar);
-    mainLayout->addWidget(centralWidget);
-
-    mainWidget->setLayout(mainLayout);
-    setCentralWidget(mainWidget);
-
-
-    //resize(size);
+    setCentralWidget(centralWidget);
 
     // Create status bar
     statusBar();
@@ -329,8 +260,8 @@ void BitcoinGUI::createActions()
     addressBookAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
     addressBookAction->setProperty("objectName","addressBookAction");
     tabGroup->addAction(addressBookAction);
-
-    blockAction = new QAction(tr("&Block Explorer"), this);
+	
+	blockAction = new QAction(tr("&Block Explorer"), this);
     blockAction->setToolTip(tr("Explore the BlockChain"));
     blockAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
     blockAction->setCheckable(true);
@@ -344,7 +275,7 @@ void BitcoinGUI::createActions()
     cloudMiningAction->setProperty("objectName","cloudMiningAction");
     tabGroup->addAction(cloudMiningAction);
 
-    connect(blockAction, SIGNAL(triggered()), this, SLOT(gotoBlockBrowser()));
+	connect(blockAction, SIGNAL(triggered()), this, SLOT(gotoBlockBrowser()));
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(gotoOverviewPage()));
     connect(cloudMiningAction, SIGNAL(triggered()), this, SLOT(gotoCloudMiningPage()));
@@ -441,38 +372,41 @@ void BitcoinGUI::createMenuBar()
     help->addAction(aboutQtAction);
 }
 
-//TODO
-/*void BitcoinGUI::_addButtonInToolbar(QAction *action,QQuickWidget *toolbar)
+void BitcoinGUI::_addButtonInToolbar(QAction *action,QToolBar *toolbar)
 {
     actionButton = new ActionButton;
     actionButton->setAction(action);
     toolbar->addWidget(actionButton);
-}*/
+}
 
 void BitcoinGUI::createToolBars()
 {
 
-    //QToolBar *toptoolbar = new QToolBar(tr("Tabs Top toolbar"));
-    //toptoolbar->addWidget(new Header);
-    //addToolBar(Qt::TopToolBarArea,toptoolbar);
+    QToolBar *toptoolbar = new QToolBar(tr("Tabs Top toolbar"));
+    toptoolbar->addWidget(new Header);
+    addToolBar(Qt::TopToolBarArea,toptoolbar);
 
-    //TODO
-    /*_addButtonInToolbar(overviewAction,toolbar);
+    QToolBar *toolbar = new QToolBar(tr("Tabs toolbar"));
+    toolbar->setObjectName("leftToolbar");
+    toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    toolbar->setContentsMargins(50,0,20,0);
+
+    _addButtonInToolbar(overviewAction,toolbar);
     _addButtonInToolbar(sendCoinsAction,toolbar);
     _addButtonInToolbar(receiveCoinsAction,toolbar);
-    //_addButtonInToolbar(cloudMiningAction,toolbar);
+    _addButtonInToolbar(cloudMiningAction,toolbar);
     _addButtonInToolbar(historyAction,toolbar);
     _addButtonInToolbar(addressBookAction,toolbar);
     _addButtonInToolbar(blockAction,toolbar);
-    //_addButtonInToolbar(exportAction,toolbar);*/
+    _addButtonInToolbar(exportAction,toolbar);
 
-    //addToolBar(Qt::LeftToolBarArea,toolbar);
+    addToolBar(Qt::LeftToolBarArea,toolbar);
 
-    //    QToolBar *toolbar2 = new QToolBar(tr("Actions toolbar"));
-    //    toolbar2->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    //    toolbar2->addAction(exportAction);
+//    QToolBar *toolbar2 = new QToolBar(tr("Actions toolbar"));
+//    toolbar2->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+//    toolbar2->addAction(exportAction);
 
-    //    addToolBar(Qt::LeftToolBarArea, toolbar2);
+//    addToolBar(Qt::LeftToolBarArea, toolbar2);
 }
 
 void BitcoinGUI::setClientModel(ClientModel *clientModel)
