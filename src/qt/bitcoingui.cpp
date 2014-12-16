@@ -384,7 +384,8 @@ void BitcoinGUI::createToolBars()
 
     QToolBar *toptoolbar = new QToolBar(tr("Tabs Top toolbar"));
     toptoolbar->addWidget(new Header);
-    addToolBar(Qt::TopToolBarArea,toptoolbar);
+    toptoolbar->setObjectName("logoToolbar");
+    addToolBar(Qt::LeftToolBarArea,toptoolbar);
 
     QToolBar *toolbar = new QToolBar(tr("Tabs toolbar"));
     toolbar->setObjectName("leftToolbar");
@@ -394,11 +395,11 @@ void BitcoinGUI::createToolBars()
     _addButtonInToolbar(overviewAction,toolbar);
     _addButtonInToolbar(sendCoinsAction,toolbar);
     _addButtonInToolbar(receiveCoinsAction,toolbar);
-    _addButtonInToolbar(cloudMiningAction,toolbar);
+    //_addButtonInToolbar(cloudMiningAction,toolbar);
     _addButtonInToolbar(historyAction,toolbar);
     _addButtonInToolbar(addressBookAction,toolbar);
     _addButtonInToolbar(blockAction,toolbar);
-    _addButtonInToolbar(exportAction,toolbar);
+    //_addButtonInToolbar(exportAction,toolbar);
 
     addToolBar(Qt::LeftToolBarArea,toolbar);
 

@@ -18,7 +18,11 @@ QMainWindow {
     font-size:14px;
 }
 
-
+#headerLabel QLabel,
+#Header QWidget
+{
+    background-color: transparent;
+}
 
  QWidget, QDialog, QFrame, #AskPassphraseDialog, #EditAddressDialog 
 
@@ -921,11 +925,17 @@ QToolBar{
 }
 
 
-QToolBar:vertical{
+#leftToolbar {
     margin: 0 0px; 
     padding:0px;
     background: url(:/default/res/themes/default/leftbar/bg-menu.png) no-repeat left middle transparent;
     width: 293px;
+}
+QToolBar#logoToolbar {
+    margin: 0 0px;
+    padding:0px;
+    width: 293px;
+    background-color : transparent;
 }
 QToolBar:vertical QPushButton
 {
