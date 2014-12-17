@@ -98,6 +98,8 @@ $RECYCLE.BIN/
 build/
 release/
 Makefile*
+!Makefile.am
+!Makefile.qt*
 *.zip
 *.7z
 
