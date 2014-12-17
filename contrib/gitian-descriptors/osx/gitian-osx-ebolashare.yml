@@ -58,12 +58,12 @@ script: |
   cd distsrc
   tar -xvf $HOME/build/ebolashare/ebolashare.tar.gz
   
-  sed 's/mmacosx-version-min\=10.5/mmacosx-version-min=10.6/' -i ebolashare-qt.pro
-  sed 's/10.5/10.7/' -i ebolashare-qt.pro
-  sed 's/\/Developer\//\/home\/ubuntu\/build\/osx-cross-depends\//' -i ebolashare-qt.pro
-  sed 's/10.5/10.7/' -i ebolashare-qt.pro
-  sed 's/arch i386/arch x86_64/' -i ebolashare-qt.pro
-  sed 's/CXX $(MAKE)/CXX AR=x86_64-apple-darwin11-ar $(MAKE)/' -i ebolashare-qt.pro
+  sed 's/mmacosx-version-min\=10.5/mmacosx-version-min=10.6/' -i EbolaShare.pro
+  sed 's/10.5/10.7/' -i EbolaShare.pro
+  sed 's/\/Developer\//\/home\/ubuntu\/build\/osx-cross-depends\//' -i EbolaShare.pro
+  sed 's/10.5/10.7/' -i EbolaShare.pro
+  sed 's/arch i386/arch x86_64/' -i EbolaShare.pro
+  sed 's/CXX $(MAKE)/CXX AR=x86_64-apple-darwin11-ar $(MAKE)/' -i EbolaShare.pro
 
   qmake -spec macx-clang-linux MINIUPNPC_LIB_PATH=$PREFIX/lib MINIUPNPC_INCLUDE_PATH=$PREFIX/include BDB_LIB_PATH=$PREFIX/lib BDB_INCLUDE_PATH=$PREFIX/include BOOST_LIB_PATH=$PREFIX/lib BOOST_INCLUDE_PATH=$PREFIX/include BOOST_LIB_SUFFIX=-mt-s OPENSSL_LIB_PATH=$PREFIX/lib OPENSSL_INCLUDE_PATH=$PREFIX/include QRENCODE_LIB_PATH=$PREFIX/lib QRENCODE_INCLUDE_PATH=$PREFIX/include USE_QRCODE=1 INCLUDEPATH=$PREFIX/include DEFINES=BOOST_THREAD_USE_LIB QMAKE_LRELEASE=lrelease USE_BUILD_INFO=1 USE_SSE2=1 USE_UPNP=1 RELEASE=1
   make TARGET_OS=Darwin
