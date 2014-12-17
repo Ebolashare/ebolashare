@@ -5,7 +5,8 @@ macx{
 QMAKE_MOC = $$QMAKE_MOC -DBOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED
 
 TEMPLATE = app
-TARGET = ebolashares-qt
+TARGET = EbolaShare
+macx:TARGET = "EbolaShare"
 VERSION = 0.5.0
 INCLUDEPATH += src src/json src/qt
 QT += core gui network
