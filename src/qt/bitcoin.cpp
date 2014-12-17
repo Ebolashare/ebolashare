@@ -148,12 +148,12 @@ int main(int argc, char *argv[])
 
     // Application identification (must be set before OptionsModel is initialized,
     // as it is used to locate QSettings)
-    app.setOrganizationName("ebolashares");
+    app.setOrganizationName("EbolaShare");
     //XXX app.setOrganizationDomain("");
     if(GetBoolArg("-testnet")) // Separate UI settings for testnet
-        app.setApplicationName("ebolashares-qt-testnet");
+        app.setApplicationName("ebolashare-testnet");
     else
-        app.setApplicationName("ebolashares-qt");
+        app.setApplicationName("ebolashare");
 
     // ... then GUI settings:
     OptionsModel optionsModel;
