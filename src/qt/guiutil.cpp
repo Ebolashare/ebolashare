@@ -15,11 +15,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QFileDialog>
-#if QT_VERSION < 0x050000
 #include <QDesktopServices>
-#else
-#include <QStandardPaths>
-#endif
 #include <QThread>
 #include <QStringList>
 
