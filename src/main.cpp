@@ -2112,6 +2112,13 @@ bool CBlock::AcceptBlock()
     if (IsProofOfStake() && nHeight < MODIFIER_INTERVAL_SWITCH)
         return DoS(100, error("AcceptBlock() : reject proof-of-stake at height %d", nHeight));
 
+    if (fTestNet && IsProofOfWork() && nHeight > LAST_POW_BLOCK_TESTNET)
+        return DoS(100, error("AcceptBlock() : reject proof-of-work at height %d", nHeight));
+
+    if (IsProofOfStake() && nHeight < LAST_POW_BLOCK_TESTNET)
+        return DoS(100, error("AcceptBlock() : reject proof-of-stake at height %d", nHeight));
+
+
     // Check proof-of-work or proof-of-stake
     if (nBits != GetNextTargetRequired(pindexPrev, IsProofOfStake()))
         return DoS(100, error("AcceptBlock() : incorrect %s", IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
@@ -2502,7 +2509,7 @@ bool LoadBlockIndex(bool fAllowNew)
         block.nNonce   = 3560792;
 		if(fTestNet)
         {
-            block.nNonce   = 0;
+            block.nNonce   = 36252;
         }
         if (false && (block.GetHash() != hashGenesisBlock)) {
 

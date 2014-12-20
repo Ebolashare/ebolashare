@@ -134,3 +134,6 @@ ebolashares-qt_plugin_import.cpp
 ebolashares-qt_qml_plugin_import.cpp
 object_script.ebolashares-qt.Debug
 *.qm
+ebolashare_plugin_import.cpp
+object_script.EbolaShare.Debug
+object_script.EbolaShare.Release
