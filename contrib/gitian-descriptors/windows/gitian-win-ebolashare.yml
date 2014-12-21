@@ -1,5 +1,5 @@
 ---
-name: "darkcoin"
+name: "ebolashare"
 suites:
 - "precise"
 architectures:
@@ -13,11 +13,11 @@ packages:
 - "faketime"
 reference_datetime: "2014-01-10 00:00:00"
 remotes:
-- "url": "https://github.com/darkcoin/darkcoin.git"
-  "dir": "darkcoin"
+- "url": "https://github.com/Ebolashare/ebolashare.git"
+  "dir": "ebolashare"
 files:
-- "qt-win32-4.8.5-gitian-r5.zip"
-- "qt-win64-4.8.5-gitian-r5.zip"
+- "qt-win32-5.2.1-gitian-r5.zip"
+- "qt-win64-5.2.1-gitian-r5.zip"
 - "boost-win32-1.55.0-gitian-r6.zip"
 - "boost-win64-1.55.0-gitian-r6.zip"
 - "bitcoin-deps-win32-gitian-r13.zip"
@@ -53,7 +53,7 @@ script: |
     export PATH=$STAGING/host/bin:$PATH
     #
     cd $STAGING
-    unzip $INDIR/qt-win${BITS}-4.8.5-gitian-r5.zip
+    unzip $INDIR/qt-win${BITS}-5.2.1-gitian-r5.zip
     unzip $INDIR/boost-win${BITS}-1.55.0-gitian-r6.zip
     unzip $INDIR/bitcoin-deps-win${BITS}-gitian-r13.zip
     unzip $INDIR/protobuf-win${BITS}-2.5.0-gitian-r4.zip
@@ -61,10 +61,10 @@ script: |
 
     if [ "$NEEDDIST" == "1" ]; then
       # Make source code archive which is architecture independent so it only needs to be done once
-      cd $HOME/build/darkcoin
+      cd $HOME/build/ebolashare
       VERSION_TAG=`git describe --tags --exact-match --always | cut -c 2-`
-      git archive HEAD --format=tar.gz --prefix=darkcoin-$VERSION_TAG/ > darkcoin-$VERSION_TAG.tar.gz
-      DISTNAME=`echo darkcoin-*.tar.gz`
+      git archive HEAD --format=tar.gz --prefix=ebolashare-$VERSION_TAG/ > ebolashare-$VERSION_TAG.tar.gz
+      DISTNAME=`echo ebolashare-*.tar.gz`
       NEEDDIST=0
     fi
 
@@ -72,35 +72,35 @@ script: |
     cd $BUILDDIR
     mkdir -p distsrc
     cd distsrc
-    tar --strip-components=1 -xf $HOME/build/darkcoin/$DISTNAME
+    tar --strip-components=1 -xf $HOME/build/ebolashare/$DISTNAME
     
     export LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1
     export FAKETIME=$REFERENCE_DATETIME
     ln -s $STAGING $HOME/qt
-    $STAGING/host/bin/qmake -spec unsupported/win32-g++-cross MINIUPNPC_LIB_PATH=$STAGING MINIUPNPC_INCLUDE_PATH=$STAGING BDB_LIB_PATH=$STAGING BDB_INCLUDE_PATH=$STAGING BOOST_LIB_PATH=$STAGING BOOST_INCLUDE_PATH=$STAGING BOOST_LIB_SUFFIX=-mt-s BOOST_THREAD_LIB_SUFFIX=_win32-mt-s OPENSSL_LIB_PATH=$STAGING OPENSSL_INCLUDE_PATH=$STAGING QRENCODE_LIB_PATH=$STAGING QRENCODE_INCLUDE_PATH=$STAGING USE_QRCODE=1 INCLUDEPATH=$STAGING DEFINES=BOOST_THREAD_USE_LIB BITCOIN_NEED_QT_PLUGINS=1 QMAKE_LRELEASE=lrelease QMAKE_CXXFLAGS=-frandom-seed=darkcoin USE_BUILD_INFO=1 USE_SSE2=1 USE_UPNP=1
+    $STAGING/host/bin/qmake -spec unsupported/win32-g++-cross MINIUPNPC_LIB_PATH=$STAGING MINIUPNPC_INCLUDE_PATH=$STAGING BDB_LIB_PATH=$STAGING BDB_INCLUDE_PATH=$STAGING BOOST_LIB_PATH=$STAGING BOOST_INCLUDE_PATH=$STAGING BOOST_LIB_SUFFIX=-mt-s BOOST_THREAD_LIB_SUFFIX=_win32-mt-s OPENSSL_LIB_PATH=$STAGING OPENSSL_INCLUDE_PATH=$STAGING QRENCODE_LIB_PATH=$STAGING QRENCODE_INCLUDE_PATH=$STAGING USE_QRCODE=1 INCLUDEPATH=$STAGING DEFINES=BOOST_THREAD_USE_LIB BITCOIN_NEED_QT_PLUGINS=1 QMAKE_LRELEASE=lrelease QMAKE_CXXFLAGS=-frandom-seed=ebolashare USE_BUILD_INFO=1 USE_SSE2=1 USE_UPNP=1
     make V=1 $MAKEOPTS
-    $HOST-strip release/darkcoin-qt.exe
-    cp -f release/darkcoin-qt.exe $BINDIR/
+    $HOST-strip release/ebolashare-qt.exe
+    cp -f release/ebolashare-qt.exe $BINDIR/
     #
     cd src
     export LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1
     export FAKETIME=$REFERENCE_DATETIME
     export TZ=UTC
-    make -f makefile.linux-mingw $MAKEOPTS DEPSDIR=$STAGING darkcoind.exe USE_UPNP=1 DEBUGFLAGS="-frandom-seed=darkcoin" USE_SSE2=1
-    $HOST-strip darkcoind.exe
+    make -f makefile.linux-mingw $MAKEOPTS DEPSDIR=$STAGING ebolashared.exe USE_UPNP=1 DEBUGFLAGS="-frandom-seed=ebolashare" USE_SSE2=1
+    $HOST-strip ebolashared.exe
     mkdir $BINDIR/daemon
-    cp darkcoind.exe $BINDIR/daemon
+    cp ebolashared.exe $BINDIR/daemon
     
     cd ..
     mkdir nsis
-    tar --strip-components=1 -xf $HOME/build/darkcoin/$DISTNAME -C nsis
+    tar --strip-components=1 -xf $HOME/build/ebolashare/$DISTNAME -C nsis
     cd nsis/src
     mkdir ../release
     cp -v ../../release/* ../release/
     cp -v ../../src/*.exe .
     sed "s/0.9.0.0/${VERSION_TAG}/" -i ../share/setup.nsi 
     makensis ../share/setup.nsi
-    cp -v ../share/darkcoin-*-win${BITS}-setup.exe $BINDIR/
+    cp -v ../share/ebolashare-*-win${BITS}-setup.exe $BINDIR/
 
     unset LD_PRELOAD
     unset FAKETIME
@@ -112,4 +112,4 @@ script: |
   rm -rf $TEMPDIR
   mkdir -p $TEMPDIR
   cd $TEMPDIR
-  tar -xvf $HOME/build/darkcoin/$DISTNAME | sort | tar --no-recursion -cT /dev/stdin --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 --mtime="$REFERENCE_DATETIME" | gzip -n > $OUTDIR/src/$DISTNAME
+  tar -xvf $HOME/build/ebolashare/$DISTNAME | sort | tar --no-recursion -cT /dev/stdin --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 --mtime="$REFERENCE_DATETIME" | gzip -n > $OUTDIR/src/$DISTNAME
