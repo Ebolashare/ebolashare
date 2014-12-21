@@ -16,8 +16,8 @@ remotes:
 - "url": "https://github.com/Ebolashare/ebolashare.git"
   "dir": "ebolashare"
 files:
-- "qt-win32-5.2.1-gitian-r5.zip"
-- "qt-win64-5.2.1-gitian-r5.zip"
+- "qt-win32-5.2.1-gitian-r3.zip"
+- "qt-win64-5.2.1-gitian-r3.zip"
 - "boost-win32-1.55.0-gitian-r6.zip"
 - "boost-win64-1.55.0-gitian-r6.zip"
 - "bitcoin-deps-win32-gitian-r13.zip"
@@ -53,7 +53,7 @@ script: |
     export PATH=$STAGING/host/bin:$PATH
     #
     cd $STAGING
-    unzip $INDIR/qt-win${BITS}-5.2.1-gitian-r5.zip
+    unzip $INDIR/qt-win${BITS}-5.2.1-gitian-r3.zip
     unzip $INDIR/boost-win${BITS}-1.55.0-gitian-r6.zip
     unzip $INDIR/bitcoin-deps-win${BITS}-gitian-r13.zip
     unzip $INDIR/protobuf-win${BITS}-2.5.0-gitian-r4.zip
@@ -82,14 +82,14 @@ script: |
     $HOST-strip release/ebolashare-qt.exe
     cp -f release/ebolashare-qt.exe $BINDIR/
     #
-    cd src
-    export LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1
-    export FAKETIME=$REFERENCE_DATETIME
-    export TZ=UTC
-    make -f makefile.linux-mingw $MAKEOPTS DEPSDIR=$STAGING ebolashared.exe USE_UPNP=1 DEBUGFLAGS="-frandom-seed=ebolashare" USE_SSE2=1
-    $HOST-strip ebolashared.exe
-    mkdir $BINDIR/daemon
-    cp ebolashared.exe $BINDIR/daemon
+    #cd src
+    #export LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1
+    #export FAKETIME=$REFERENCE_DATETIME
+    #export TZ=UTC
+    #make -f makefile.linux-mingw $MAKEOPTS DEPSDIR=$STAGING ebolashared.exe USE_UPNP=1 DEBUGFLAGS="-frandom-seed=ebolashare" USE_SSE2=1
+    #$HOST-strip ebolashared.exe
+    #mkdir $BINDIR/daemon
+    #cp ebolashared.exe $BINDIR/daemon
     
     cd ..
     mkdir nsis
@@ -108,8 +108,9 @@ script: |
   done # for BITS in
   
   # sort distribution tar file and normalize user/group/mtime information for deterministic output
-  mkdir -p $OUTDIR/src
-  rm -rf $TEMPDIR
-  mkdir -p $TEMPDIR
-  cd $TEMPDIR
-  tar -xvf $HOME/build/ebolashare/$DISTNAME | sort | tar --no-recursion -cT /dev/stdin --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 --mtime="$REFERENCE_DATETIME" | gzip -n > $OUTDIR/src/$DISTNAME
+    mkdir -p $OUTDIR/src 
+    rm -rf $TEMPDIR 
+    mkdir -p $TEMPDIR && cd $TEMPDIR 
+      
+    tar xf $HOME/build/ebolashare/$DISTNAME
+    find ebolashare-* | sort | tar --no-recursion -c -T - | gzip -9n > $OUTDIR/src/$DISTNAME

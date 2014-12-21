@@ -2115,7 +2115,7 @@ bool CBlock::AcceptBlock()
     if (fTestNet && IsProofOfWork() && nHeight > LAST_POW_BLOCK_TESTNET)
         return DoS(100, error("AcceptBlock() : reject proof-of-work at height %d", nHeight));
 
-    if (IsProofOfStake() && nHeight < LAST_POW_BLOCK_TESTNET)
+    if (IsProofOfStake() && nHeight < MODIFIER_INTERVAL_SWITCH_TESTNET)
         return DoS(100, error("AcceptBlock() : reject proof-of-stake at height %d", nHeight));
 
 
