@@ -563,17 +563,29 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     <message>
         <location line="+6"/>
         <source>Not staking because wallet is locked</source>
+<<<<<<< .merge_file_a04876
         <translation>No esta &quot;Staking&quot; porque monedera está bloqueada</translation>
+=======
+        <translation>No esta &quot;Staking&quot; porque el monedero está bloqueado</translation>
+>>>>>>> .merge_file_a06572
     </message>
     <message>
         <location line="+2"/>
         <source>Not staking because wallet is offline</source>
+<<<<<<< .merge_file_a04876
         <translation>No esta &quot;Staking&quot; porque monedera está desconectada</translation>
+=======
+        <translation>No esta &quot;Staking&quot; porque el monedero está desconectado</translation>
+>>>>>>> .merge_file_a06572
     </message>
     <message>
         <location line="+2"/>
         <source>Not staking because wallet is syncing</source>
+<<<<<<< .merge_file_a04876
         <translation>No esta &quot;Staking&quot; porque monedera está sincronizando</translation>
+=======
+        <translation>No esta &quot;Staking&quot; porque el monedero está sincronizando</translation>
+>>>>>>> .merge_file_a06572
     </message>
     <message>
         <location line="+2"/>
@@ -3337,4 +3349,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
 Si el archivo no existe, créelo con permiso de lectura solamente del propietario.</translation>
     </message>
 </context>
+<<<<<<< .merge_file_a04876
 </TS>
+=======
+</TS>
+>>>>>>> .merge_file_a06572

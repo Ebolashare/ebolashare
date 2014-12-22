@@ -34,11 +34,14 @@ std::string TableFileName(const std::string& name, uint64_t number) {
   return MakeFileName(name, number, "ldb");
 }
 
+<<<<<<< HEAD
 std::string SSTTableFileName(const std::string& name, uint64_t number) {
   assert(number > 0);
   return MakeFileName(name, number, "sst");
 }
 
+=======
+>>>>>>> gitian-test
 std::string DescriptorFileName(const std::string& dbname, uint64_t number) {
   assert(number > 0);
   char buf[100];
@@ -76,7 +79,7 @@ std::string OldInfoLogFileName(const std::string& dbname) {
 //    dbname/LOG
 //    dbname/LOG.old
 //    dbname/MANIFEST-[0-9]+
-//    dbname/[0-9]+.(log|sst|ldb)
+//    dbname/[0-9]+.(log|sst)
 bool ParseFileName(const std::string& fname,
                    uint64_t* number,
                    FileType* type) {
@@ -111,7 +114,7 @@ bool ParseFileName(const std::string& fname,
     Slice suffix = rest;
     if (suffix == Slice(".log")) {
       *type = kLogFile;
-    } else if (suffix == Slice(".sst") || suffix == Slice(".ldb")) {
+    } else if (suffix == Slice(".sst")) {
       *type = kTableFile;
     } else if (suffix == Slice(".dbtmp")) {
       *type = kTempFile;

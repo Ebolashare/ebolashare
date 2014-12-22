@@ -136,6 +136,7 @@ ebolashares-qt_plugin_import.cpp
 ebolashares-qt_qml_plugin_import.cpp
 object_script.ebolashares-qt.Debug
 *.qm
+<<<<<<< HEAD
 !dependes/Makefile
 
 *.tar.gz
@@ -252,3 +253,8 @@ qa/pull-tester/test.*/*
 
 /doc/doxygen/
 depends/x86_64*/*
+=======
+ebolashare_plugin_import.cpp
+object_script.EbolaShare.Debug
+object_script.EbolaShare.Release
+>>>>>>> gitian-test

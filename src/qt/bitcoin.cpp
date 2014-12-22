@@ -154,12 +154,18 @@ int main(int argc, char *argv[])
 
     // Application identification (must be set before OptionsModel is initialized,
     // as it is used to locate QSettings)
-    app.setOrganizationName("ebolashares");
+    app.setOrganizationName("EbolaShare");
     //XXX app.setOrganizationDomain("");
     if(GetBoolArg("-testnet")) // Separate UI settings for testnet
+<<<<<<< HEAD
         app.setApplicationName("ebolashares-Qt-testnet");
     else
         app.setApplicationName("ebolashares-Qt");
+=======
+        app.setApplicationName("ebolashare-testnet");
+    else
+        app.setApplicationName("ebolashare");
+>>>>>>> gitian-test
 
     // ... then GUI settings:
     OptionsModel optionsModel;

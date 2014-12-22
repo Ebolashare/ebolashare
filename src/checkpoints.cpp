@@ -44,6 +44,10 @@ namespace Checkpoints
 
     int GetTotalBlocksEstimate()
     {
+<<<<<<< .merge_file_a01488
+=======
+        if (fTestNet) return 0; // Testnet has no checkpoints
+>>>>>>> .merge_file_a04876
         MapCheckpoints& checkpoints = (fTestNet ? mapCheckpointsTestnet : mapCheckpoints);
 
         return checkpoints.rbegin()->first;
@@ -51,6 +55,10 @@ namespace Checkpoints
 
     CBlockIndex* GetLastCheckpoint(const std::map<uint256, CBlockIndex*>& mapBlockIndex)
     {
+<<<<<<< .merge_file_a01488
+=======
+        if (fTestNet) return NULL; // Testnet has no checkpoints
+>>>>>>> .merge_file_a04876
         MapCheckpoints& checkpoints = (fTestNet ? mapCheckpointsTestnet : mapCheckpoints);
 
         BOOST_REVERSE_FOREACH(const MapCheckpoints::value_type& i, checkpoints)
@@ -287,7 +295,11 @@ namespace Checkpoints
     {
         // Test signing a sync-checkpoint with genesis block
         CSyncCheckpoint checkpoint;
+<<<<<<< .merge_file_a01488
         checkpoint.hashCheckpoint = !fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet;
+=======
+        checkpoint.hashCheckpoint = (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet);
+>>>>>>> .merge_file_a04876
         CDataStream sMsg(SER_NETWORK, PROTOCOL_VERSION);
         sMsg << (CUnsignedSyncCheckpoint)checkpoint;
         checkpoint.vchMsg = std::vector<unsigned char>(sMsg.begin(), sMsg.end());

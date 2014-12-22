@@ -715,9 +715,9 @@ bool AppInit2()
         }
         else
             printf("Allowing wallet upgrade up to %i\n", nMaxVersion);
-        if (nMaxVersion < pwalletMain->GetVersion())
+        /*TODO: if (nMaxVersion < pwalletMain->GetVersion())
             strErrors << _("Cannot downgrade wallet") << "\n";
-        pwalletMain->SetMaxVersion(nMaxVersion);
+        pwalletMain->SetMaxVersion(nMaxVersion);*/
     }
 
     if (fFirstRun)

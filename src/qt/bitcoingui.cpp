@@ -55,7 +55,10 @@
 #include <QDateTime>
 #include <QMovie>
 #include <QFileDialog>
+<<<<<<< .merge_file_a06300
 #include <QDesktopServices>
+=======
+>>>>>>> .merge_file_a04452
 #include <QTimer>
 #include <QDragEnterEvent>
 #include <QUrl>
@@ -63,6 +66,14 @@
 #include <QStyleFactory>
 #include <QDebug>
 
+<<<<<<< .merge_file_a06300
+=======
+#if QT_VERSION < 0x050000
+#include <QDesktopServices>
+#else
+#include <QStandardPaths>
+#endif
+>>>>>>> .merge_file_a04452
 
 #include <iostream>
 
@@ -636,7 +647,11 @@ void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
     }
 
     // Set icon state: spinning if catching up, tick otherwise
+<<<<<<< .merge_file_a06300
     if(secs < 90*60 && count >= nTotalBlocks)
+=======
+    if(secs < 90*60*24 && count >= nTotalBlocks)
+>>>>>>> .merge_file_a04452
     {
         tooltip = tr("Up to date") + QString(".<br>") + tooltip;
         labelBlocksIcon->setPixmap(QIcon(":/icons/synced").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
@@ -935,7 +950,15 @@ void BitcoinGUI::encryptWallet(bool status)
 
 void BitcoinGUI::backupWallet()
 {
+<<<<<<< .merge_file_a06300
     QString saveDir = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+=======
+#if QT_VERSION < 0x050000
+    QString saveDir = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+#else
+    QString saveDir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+#endif
+>>>>>>> .merge_file_a04452
     QString filename = QFileDialog::getSaveFileName(this, tr("Backup Wallet"), saveDir, tr("Wallet Data (*.dat)"));
     if(!filename.isEmpty()) {
         if(!walletModel->backupWallet(filename)) {
