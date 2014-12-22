@@ -563,17 +563,17 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     <message>
         <location line="+6"/>
         <source>Not staking because wallet is locked</source>
-        <translation>No esta &quot;Staking&quot; porque monedera está bloqueada</translation>
+        <translation>No esta &quot;Staking&quot; porque el monedero está bloqueado</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not staking because wallet is offline</source>
-        <translation>No esta &quot;Staking&quot; porque monedera está desconectada</translation>
+        <translation>No esta &quot;Staking&quot; porque el monedero está desconectado</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not staking because wallet is syncing</source>
-        <translation>No esta &quot;Staking&quot; porque monedera está sincronizando</translation>
+        <translation>No esta &quot;Staking&quot; porque el monedero está sincronizando</translation>
     </message>
     <message>
         <location line="+2"/>
