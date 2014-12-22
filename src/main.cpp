@@ -38,12 +38,12 @@ CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // "standard" scrypt target limit
 CBigNum bnProofOfStakeLimit(~uint256(0) >> 20);
 CBigNum bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
 
-unsigned int nTargetSpacing = 1 * 60; // 60 seconds
-unsigned int nStakeMinAge = 60 * 60; // 1 hour
+unsigned int nTargetSpacing = 30; // 60 seconds
+unsigned int nStakeMinAge = 60; // 60 seconds
 unsigned int nStakeMaxAge = -1;           //unlimited
-unsigned int nModifierInterval = 10 * 60; // time to elapse before new modifier is computed
+unsigned int nModifierInterval = 60; // time to elapse before new modifier is computed
 
-int nCoinbaseMaturity = 20; //20 blocks for coins to mature
+int nCoinbaseMaturity = 5; // 5 blocks for coins to mature
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
 
@@ -806,7 +806,7 @@ int CMerkleTx::GetBlocksToMaturity() const
 {
     if (!(IsCoinBase() || IsCoinStake()))
         return 0;
-    return max(0, (nCoinbaseMaturity+10) - GetDepthInMainChain());
+    return max(0, (nCoinbaseMaturity+5) - GetDepthInMainChain());
 }
 
 
