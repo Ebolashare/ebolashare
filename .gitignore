@@ -258,3 +258,4 @@ ebolashare_plugin_import.cpp
 object_script.EbolaShare.Debug
 object_script.EbolaShare.Release
 >>>>>>> gitian-test
+!src/makefile.*
