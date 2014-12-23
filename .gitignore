@@ -137,3 +137,8 @@ object_script.ebolashares-qt.Debug
 ebolashare_plugin_import.cpp
 object_script.EbolaShare.Debug
 object_script.EbolaShare.Release
+<<<<<<< HEAD
+=======
+>>>>>>> gitian-test
+!src/makefile.*
+>>>>>>> 71f54d3... modfiy .gitignore to add makefiles
