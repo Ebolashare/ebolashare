@@ -47,5 +47,5 @@ How to compile the daemon (handy info for exchanges or services):
      mkdir obj
      chmod +x leveldb/build_detect_platform
      make -f makefile.unix
-     strip ebolashared
+     strip Ebolashared
      # Go celebrate ;)
