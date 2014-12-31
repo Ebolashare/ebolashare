@@ -33,8 +33,16 @@ Boosted by devs with 15k pow blocks with 0 reward (to ensure the blockchain gene
 
 How to compile the daemon (handy info for exchanges or services):
 
+     # the bitcoin repository is needed to obtain libdb4.8 since ubuntu official reps do not have it.
+     sudo add-apt-repository ppa:bitcoin/bitcoin
+
+     # install needed dependencies:
+     sudo apt-get update && sudo apt-get install build-essential libssl-dev libboost-all-dev libdb4.8-dev libdb4.8++-dev libminiupnpc-dev
+
+     # clone ebolashare sources to your computer:
      git clone https://github.com/Ebolashare/ebolashare.git
 
+     # compile the daemon:
      cd ebolashare/src
      mkdir obj
      chmod +x leveldb/build_detect_platform
