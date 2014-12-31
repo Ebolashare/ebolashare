@@ -33,10 +33,11 @@ Boosted by devs with 15k pow blocks with 0 reward (to ensure the blockchain gene
 
 How to compile the daemon (handy info for exchanges or services):
 
-git clone https://github.com/Ebolashare/ebolashare.git
-cd ebolashare/src
-mkdir obj
-chmod +x leveldb/build_detect_platform
-make -f makefile.unix
-strip ebolashared
-# Go celebrate ;)
+     git clone https://github.com/Ebolashare/ebolashare.git
+
+     cd ebolashare/src
+     mkdir obj
+     chmod +x leveldb/build_detect_platform
+     make -f makefile.unix
+     strip ebolashared
+     # Go celebrate ;)
